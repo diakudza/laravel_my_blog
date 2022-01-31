@@ -39,6 +39,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+
                     Start creating your amazing application!
                 </div>
                 <!-- /.card-body -->

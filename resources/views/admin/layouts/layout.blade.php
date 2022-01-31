@@ -188,74 +188,40 @@
                         </a>
 
                     </li>
+
                     <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
+                        <a href="{{route('categories.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-archive"></i>
                             <p>
-                                Widgets
-{{--                                <span class="right badge badge-danger">New</span>--}}
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
-                            <p>
-                                Layout Options
+                                Categories
                                 <i class="fas fa-angle-left right"></i>
-                                <span class="badge badge-info right">6</span>
+{{--                                <span class="badge badge-info right">6</span>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="../layout/top-nav.html" class="nav-link">
+                                <a href="{{route('categories.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Top Navigation</p>
+                                    <p>Список категорий</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                                <a href="{{route('categories.create')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Top Navigation + Sidebar</p>
+                                    <p>Новая категория</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../layout/boxed.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Boxed</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../layout/fixed-sidebar.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Fixed Sidebar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../layout/fixed-sidebar-custom.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../layout/fixed-topnav.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Fixed Navbar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../layout/fixed-footer.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Fixed Footer</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../layout/collapsed-sidebar.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Collapsed Sidebar</p>
-                                </a>
-                            </li>
+
                         </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('categories.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-archive"></i>
+                            <p>
+                                Categories
+                            </p>
+                        </a>
                     </li>
 
                 </ul>
@@ -265,8 +231,32 @@
         <!-- /.sidebar -->
     </aside>
 
+
+
+
     <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+            @if (session()->has('success'))
+            <div class="alert alert-success">
+                {{session('success')}}
+            </div>
+            @endif
+
+
     @yield('content')
+
+    </div>
     <!-- /.content-wrapper -->
 
     <footer class="main-footer">
