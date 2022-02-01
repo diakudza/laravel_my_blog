@@ -6,6 +6,7 @@
  */
 (function ($) {
   'use strict'
+$('.select2').select2()
 
   var $sidebar   = $('.control-sidebar')
   var $container = $('<div />', {

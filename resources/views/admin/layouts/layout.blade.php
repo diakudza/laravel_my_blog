@@ -33,7 +33,7 @@
                     <img src="/public/assets/admin/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="#" class="d-block">Пользователь</a>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                         <a href="{{route('categories.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-archive"></i>
                             <p>
-                                Categories
+                                Категории
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
@@ -82,9 +82,9 @@
 
                     <li class="nav-item">
                         <a href="{{route('tags.index')}}" class="nav-link">
-                            <i class="nav-icon fas fa-archive"></i>
+                            <i class="nav-icon fas fa-tags"></i>
                             <p>
-                                Tags
+                                Тэги
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
@@ -99,6 +99,30 @@
                                 <a href="{{route('tags.create')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Новый тег</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('posts.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-edit"></i>
+                            <p>
+                                Статьи
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('posts.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Список статей</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('posts.create')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Новая статья</p>
                                 </a>
                             </li>
 
