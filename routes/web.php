@@ -21,5 +21,7 @@ Route::prefix('admin')->group(function (){
 
     Route::get('/',[\App\Http\Controllers\Admin\MainController::class,'index'])->name('admin.index');
     Route::resource('categories' , \App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('tags' , \App\Http\Controllers\Admin\TagController::class);
+
 
 });
