@@ -30,7 +30,7 @@
                         </div>
                         <!-- /.card-header -->
 
-                        <form role="form" method="post" action="{{ route('posts.update',['post' => $posts->id]) }}">
+                        <form role="form" method="post" action="{{ route('posts.update',['post' => $posts->id]) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
@@ -44,15 +44,44 @@
 
                             <div class="form-group">
                                 <label for="description">Цитата</label>
-                                <textarea name="description" class="form-control" id="description" rows="3"
+                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" rows="3"
                                           placeholder="Цитата ...">{{$posts->description}}</textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="content">Контент</label>
-                                <textarea name="content" class="form-control" id="content" rows="7"
+                                <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="content" rows="7"
                                           placeholder="Контент ...">{{$posts->content}}</textarea>
                             </div>
+
+                                <div class="form-group">
+                                    <label for="category_id">Категория</label>
+                                    <select class="form-control" id="category_id" name="category_id">
+                                        @foreach($categories as $k => $v)
+                                            <option value="{{ $k }}" @if($k==$posts->category_id) selected @endif>{{ $v }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tags">Теги</label>
+                                    <select name="tags[]" id="tags" class="select" multiple="multiple" data-placeholder="Выбор тегов" style="width: 100%;">
+                                        @foreach($tags as $k => $v)
+                                            <option value="{{ $k }}"  @if(in_array($k,$posts->tags->pluck('id')->all())) selected @endif>{{ $v }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                     <label for="thumbnail">Thumbnail</label>
+
+
+
+                                    <div>
+                                        <img class="img-thumbnail" src="{{$posts->getImage()}}" height="200" id="thumbnail">
+                                        <input type="file" name="thumbnail">
+                                    </div>
+                                </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">

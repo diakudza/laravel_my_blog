@@ -53,12 +53,9 @@
                                                     <td>{{ $post->title }}</td>
                                                     <td>{{ $post->description }}</td>
                                                     <td>{{ $post->category->title }}</td>
-                                                    <td>@foreach($post->tags as $tag)
-                                                            {{ $tag->title }}.
-                                                        @endforeach
-                                                    </td>
+                                                    <td>{{$post->tags->pluck('title')->join(',')}}</td>
                                                     <td>{{ $post->created_at }}</td>
-                                                    <td>@if($post->thumbnail)<img height="100" src="{{asset('/uploads')}}/{{$post->thumbnail}}">@endif</td>
+                                                    <td><img width="80" class="img-thumbnail" src="{{$post->getImage()}}"></td>
                                                     <td>
                                                         <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                             <i class="fas fa-pencil-alt"></i>
@@ -69,8 +66,7 @@
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"
                                                                     onclick="return confirm('Подтвердите удаление')">
-                                                                <i
-                                                                    class="fas fa-trash-alt"></i>
+                                                                <i      class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </form>
                                                     </td>
@@ -86,7 +82,7 @@
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
                                 @if (count($posts))
-{{--                                {{ $post->links() }}--}}
+                                {{ $posts->links() }}
                                 @endif
 
                             </div>

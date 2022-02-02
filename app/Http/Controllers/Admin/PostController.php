@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -17,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::paginate(10);
+        $posts=Post::paginate(5);
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -51,11 +52,7 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        if($request->hasFile('thumbnail')){
-
-            $folder = date('Y-m-d');
-            $data['thumbnail'] = $request->file('thumbnail')->store("img/{$folder}");
-        }
+        $data['thumbnail'] = Post::uploadImage($request);
 
         $post = Post::create($data);
         $post -> tags() ->sync($request->tags);
@@ -73,8 +70,12 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+
+        $categories=Category::pluck('title','id')->all();
+        $tags=Tag::pluck('title','id')->all();
         $posts = Post::find($id);
-        return view('admin.posts.edit',compact('posts'));
+
+        return view('admin.posts.edit',compact('posts','categories','tags'));
     }
 
     /**
@@ -86,14 +87,21 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
             'title'=>'required',
+            'description'=>'required',
+            'content'=>'required',
+            'category_id'=>'required|integer',
+            'thumbnail'=>'nullable|image',
         ]);
-
+        $data = $request->all();
         $post = Post::find($id);
+        $data['thumbnail'] = Post::uploadImage($request, $post->thumbnail);
         $oldPost=$post->title;
-        $post->update($request->all());
-        return redirect()->route('posts.index')->with('success',"Статья id:{$post->id} \"{$oldPost}\" переименована в \"{$post->title}\" ");
+        $post->update($data);
+        $post -> tags() ->sync($request->tags);
+        return redirect()->route('posts.index')->with('success',"Статья \"{$oldPost}\" обновлена");
     }
 
     /**
@@ -105,6 +113,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post= Post::find($id);
+        $post->tags()->sync([]);
+        Storage::delete($post->thumbnail);
         $post->delete();
         return redirect()->route('posts.index')->with('success',"Статья id:{$post->id}  \"{$post->title}\" удалена");
     }
