@@ -13,12 +13,17 @@ class Post extends Model
 {
     use HasFactory;
     use Sluggable;
-
+   protected $table='posts';
     protected $fillable=['title','description','content','category_id','thumbnail'];
 
     public function tags()
     {
         return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function category()
@@ -34,9 +39,12 @@ class Post extends Model
             ]
         ];
     }
+
     public static function uploadImage(Request $request,$image = null)
     {
+
         if($request->hasFile('thumbnail')){
+
             if($image){
                 Storage::delete($image);
             }

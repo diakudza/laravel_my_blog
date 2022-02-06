@@ -30,10 +30,10 @@
             <!-- Sidebar user (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="/public/assets/admin/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img src="/uploads/{{ auth()->user()->avatar}}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Пользователь</a>
+                    <a href="#" class="d-block">{{ auth()->user()->name }}</a>
                 </div>
             </div>
 
@@ -130,10 +130,19 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('comments.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-archive"></i>
                             <p>
-                                что-то
+                                Комментарии
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('users.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Пользователи
                             </p>
                         </a>
                     </li>
@@ -190,7 +199,17 @@
 
 
 <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
-
+<script src="{{ asset('assets/admin/ckeditor/build/ckeditor.js') }}"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#content' ) )
+        .then( editor => {
+            console.log( editor );
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 </body>
 
 </html>
