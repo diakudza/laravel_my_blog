@@ -1,9 +1,6 @@
 @extends('front.layouts.layouts')
 
-@section('title')
-    @parent
-    {{ "Контакты" }}
-@endsection
+@section('title',"Контакты")
 
 @section('main-banner')
 
@@ -55,7 +52,8 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <fieldset>
-                                        <textarea name="message" rows="6" id="message" placeholder="Your Message" required=""></textarea>
+                                        <textarea name="message" rows="6" id="message" placeholder="Your Message"
+                                                  required=""></textarea>
                                     </fieldset>
                                 </div>
                                 <div class="col-lg-12">
@@ -96,7 +94,9 @@
     </div>
     <div class="col-lg-12">
         <div id="map">
-            <iframe src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" width="100%" height="450px" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+            <iframe
+                src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                width="100%" height="450px" frameborder="0" style="border:0" allowfullscreen=""></iframe>
         </div>
     </div>
 @endsection

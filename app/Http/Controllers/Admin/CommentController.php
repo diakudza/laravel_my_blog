@@ -20,9 +20,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-//        $comments=Comment::with('comments','user')->paginate(20);
-        $comments=Comment::all();
-//        dd(Post::find(1)->comments);
+        $comments=Comment::with('post')->paginate(10);
         return view('admin.comments.index',compact('comments'));
     }
 
@@ -54,8 +52,6 @@ class CommentController extends Controller
             'title'=> $request->input('content'),
         ]);
         $post=Post::all();
-
-        //$post ->comments()->sync($request->input('post_id'));
 
         return redirect()->back()->with('success','Комментарий добавлен');
     }

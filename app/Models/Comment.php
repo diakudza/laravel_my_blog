@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+
 
 class Comment extends Model
 {
@@ -16,8 +16,12 @@ class Comment extends Model
 
     public function post()
     {
-//        return $this->belongsToMany(Post::class);
         return $this->belongsTo(Post::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class);
     }
 
 }

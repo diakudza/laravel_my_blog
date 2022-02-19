@@ -14,7 +14,26 @@
 <!-- Site wrapper -->
 <div class="wrapper">
     <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="index3.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
 
+        <!-- SEARCH FORM -->
+
+
+        <!-- Right navbar links -->
+
+    </nav>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
@@ -161,7 +180,7 @@
     <div class="content-wrapper">
 
         @if ($errors->any())
-            <div class="alert alert-danger">
+               <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -174,6 +193,12 @@
             <div class="alert alert-success">
                 {{session('success')}}
             </div>
+            @endif
+
+            @if (session()->has('error'))
+                <div class="alert alert-danger">
+                    {{session('error')}}
+                </div>
             @endif
 
 

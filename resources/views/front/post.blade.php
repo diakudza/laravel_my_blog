@@ -1,9 +1,6 @@
 @extends('front.layouts.layouts')
 
-@section('title')
-    @parent
-    {{ "Статьи" }}
-@endsection
+@section('title',"$post->title")
 
 @section('main-banner')
 
@@ -28,6 +25,7 @@
 @endsection
 
 @section('content')
+
     <div class="all-blog-posts">
         <div class="row">
             <div class="col-lg-12">
@@ -43,7 +41,7 @@
                             <li><a href="#">{{$post->created_at}}</a></li>
 
                         </ul>
-                        <p>{!!   $post->content !!}</p>
+                        <p>{!! $post->content !!}</p>
                         <div class="post-options">
                             <div class="row">
                                 <div class="col-6">
@@ -72,14 +70,15 @@
                     </div>
                     <div class="content">
                         <ul>
-                            @foreach($post->comments as $comments)
+
+                            @foreach($comments as $comment)
                             <li>
                                 <div class="author-thumb">
-                                    <img src="../uploads/{{\App\Models\User::find($comments->user_id)->avatar}}" alt="">
+                                    <img src="../uploads/{{$user->find($comment->user_id)->avatar}}" alt="">
                                 </div>
                                 <div class="right-content">
-                                    <h4>{{\App\Models\User::find($comments->user_id)->name}}<span>{{$comments->created_at}}</span></h4>
-                                    <p>{{$comments->title}}</p>
+                                    <h4>{{$user->find($comment->user_id)->name}}<span>{{$comment->created_at}}</span></h4>
+                                    <p>{{$comment->title}}</p>
                                 </div>
                             </li>
 

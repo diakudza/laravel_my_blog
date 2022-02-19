@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[\App\Http\Controllers\MainController::class,'index'])->name('home');
+Route::get('/search',[\App\Http\Controllers\MainController::class,'indexSearch'])->name('search');
 
 
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function (){
@@ -43,7 +44,7 @@ Route::group(['middleware'=>'guest'],function () {
 
 });
 
- Route::get('post/{id}',[\App\Http\Controllers\PostController::class, 'show']);
+ Route::get('post/{slug}',[\App\Http\Controllers\PostController::class, 'show']);
  Route::get('contact',function (){
      return view('front.contact');
  });

@@ -8,7 +8,7 @@
     <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
 
-    <title> @section('title')Diakudza:: @show</title>
+    <title> @yield('title')</title>
 
     <link rel="stylesheet" href="{{ asset('assets/admin/css/admin.css') }}">
     <script src="{{ asset('assets/admin/js/admin.js') }}"></script>

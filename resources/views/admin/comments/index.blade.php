@@ -49,7 +49,7 @@
                                                     <td>{{ $comment->id }}</td>
                                                     <td>{{ $comment->title }}</td>
                                                     <td>{{\App\Models\User::find($comment->user_id)->name }}</td>
-                                                    <td>{{ \App\Models\Post::where('id','=',$comment->post_id)->pluck('title')->first()}} </td>
+                                                    <td>{{ $comment->post->where('id','=',$comment->post_id)->pluck('title')->first()}} </td>
 
                                                     <td>
                                                         <a href="{{ route('comments.edit', ['comment' => $comment->id]) }}" class="btn btn-info btn-sm float-left mr-1">
@@ -75,16 +75,10 @@
                                     <p>Тегов пока нет...</p>
                                 @endif
                             </div>
-                            <!-- /.card-body -->
+
                             <div class="card-footer clearfix">
-{{--                                {{ $tags->links() }}--}}
-                                {{--<ul class="pagination pagination-sm m-0 float-right">
-                                    <li class="page-item"><a class="page-link" href="#">«</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">»</a></li>
-                                </ul>--}}
+                                {{ $comments->links() }}
+
                             </div>
                         </div>
                         <!-- /.card -->
