@@ -20,7 +20,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments=Comment::with('post')->paginate(10);
+        $comments=Comment::with('post')->with('user')->paginate(10);
+
         return view('admin.comments.index',compact('comments'));
     }
 

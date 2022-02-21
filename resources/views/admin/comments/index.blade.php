@@ -48,9 +48,8 @@
                                                 <tr>
                                                     <td>{{ $comment->id }}</td>
                                                     <td>{{ $comment->title }}</td>
-                                                    <td>{{\App\Models\User::find($comment->user_id)->name }}</td>
-                                                    <td>{{ $comment->post->where('id','=',$comment->post_id)->pluck('title')->first()}} </td>
-
+                                                    <td>{{ $comment->user->name }}</td>
+                                                    <td>{{ $comment->post->title }} </td>
                                                     <td>
                                                         <a href="{{ route('comments.edit', ['comment' => $comment->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                             <i class="fas fa-pencil-alt"></i>

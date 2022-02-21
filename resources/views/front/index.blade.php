@@ -16,7 +16,7 @@
                                 <div class="meta-category">
                                     <span>{{$post->category->title}}</span>
                                 </div>
-                                <a href="/post/{{$post->id}}"><h4>{{$post->description}}</h4></a>
+                                <a href="/post/{{$post->slug}}"><h4>{{$post->description}}</h4></a>
                                 <ul class="post-info">
                                     <li><a href="#">{{$post->created_at}}</a></li>
                                     <li><a href="#">{{count($post->comments)}} Comments</a></li>

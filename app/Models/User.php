@@ -47,8 +47,10 @@ class User extends Authenticatable
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsToMany(Comment::class);
     }
+
+
 
     public static function uploadImage(Request $request,$image = null)
     {

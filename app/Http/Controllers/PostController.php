@@ -17,7 +17,7 @@ class PostController extends Controller
         $user=User::all();
         $post = Post::where('slug', $slug)->with('comments')->firstOrFail();
         $comments = $post->comments->all();
-        $post->view = ++$post->view;
+        $post->view +=1;
         $post->update();
 
         return view('front.post', compact('post','comments','user'));
